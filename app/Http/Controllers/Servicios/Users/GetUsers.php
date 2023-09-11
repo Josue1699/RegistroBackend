@@ -12,5 +12,6 @@ class GetUsers extends Controller
     public function getUsers(){
         $usuario=DB::select('call usuarios()');
         return response()->json($usuario);
+        //return User::all();
     }
 }
