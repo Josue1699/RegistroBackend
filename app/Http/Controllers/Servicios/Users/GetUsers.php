@@ -10,8 +10,12 @@ use Illuminate\Support\Facades\DB;
 class GetUsers extends Controller
 {
     public function getUsers(){
-        $usuario=DB::select('call usuarios()');
-        //return response()->json($usuario);
+       $usuario=DB::select('call usuarios()');
+       // return response()->json($usuario);
         return User::all();
+
+        //$usuario = DB::select('call userdata()');
+        //return response()->json(['name' => $usuario->name]);
+
     }
 }

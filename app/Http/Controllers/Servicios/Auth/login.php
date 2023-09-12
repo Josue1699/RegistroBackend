@@ -15,7 +15,6 @@ class login extends Controller
         if (Auth::attempt($credentials)) {
             $user = Auth::user();
             $token = $user->createToken('authToken')->accessToken;
-            
             return response()->json(['user' => Auth::user() ,'token' => $token], 200);
         }else{
             return response()->json(['message'=> 'Credenciales invalidas']);

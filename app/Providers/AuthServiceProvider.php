@@ -5,7 +5,7 @@ namespace App\Providers;
 // use Illuminate\Support\Facades\Gate;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use Laravel\Passport\Passport;
-
+use Illuminate\Support\Facades\Auth;
 class AuthServiceProvider extends ServiceProvider
 {
     /**
@@ -25,7 +25,18 @@ class AuthServiceProvider extends ServiceProvider
 
         //Passport::tokensExpireIn(now()->addDays(15));
         //Passport::refreshTokensExpireIn(now()->addDays(30));
-        Passport::personalAccessTokensExpireIn(now()->addMinutes(2));
-       
+        $user = Auth::user();
+      if($user){
+        if ($user->role == 'user'){
+            Passport::personalAccessTokensExpireIn(now()->addMinutes(5));
+        }else{
+            Passport::personalAccessTokensExpireIn(now()->addMinutes(2));
+        }
+      }
+
+
+
+
+
     }
 }
