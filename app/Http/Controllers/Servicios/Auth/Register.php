@@ -14,12 +14,14 @@ class Register extends Controller
             'name' => 'required|string',
             'email' => 'required|string|email|unique:users',
             'password' => 'required|confirmed|string|min:8',
+            'role' => 'string',
         ]))
         {
                 $user = new User([
                     'name' => $request->name,
                     'email' => $request->email,
                     'password' => bcrypt($request->password),
+                    'role' => $request->role,
                 ]);
 
                 $user->save();
